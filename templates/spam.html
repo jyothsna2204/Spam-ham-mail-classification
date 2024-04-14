@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <style>
+            .main{
+                position:absolute;
+                background-color: darkslategray;
+                height: 70%;
+                width:50%;
+                top:18%;
+                left:25%;
+                border-radius: 10px;
+                text-align: center;
+            }
+            body{
+                background-color: lightslategray;
+            }
+            h1{
+                text-align: center;
+                color: black;
+            }
+            label{
+                color:black;
+            }
+            input{
+                height:100px;
+                border-radius: 9px;
+                width:160px;
+            }
+            button{
+                border-radius: 9px;
+                background-color: rgb(152, 250, 152);
+                width: 70px;
+                height: 40px;
+            }
+            img{
+                height: 40px;
+                width: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+        <form action="/predict" method="post">
+        <h1>Spam mail Detection</h1>
+        <br>
+        <label for="text">Enter the subject of the mail:</label>
+        <input type="text" placeholder="    subject:" name="text"><br><br><br><br>
+        <button>classify</button>
+        </form>
+        {% if res1 %}
+        <p>Classification Result: {{ res1 }}</p>
+        {% endif %}
+        {% if res1=="ham mail" %}
+        <img src="{{ url_for('static', filename='ham.png') }}" alt="ham cant load">
+        {% endif %}
+        {% if res1=="spam mail" %}
+        <img src="{{ url_for('static', filename='spam.jpg') }}" alt="spam img cant load">
+        {% endif %}
+        </div>
+    </body>
+</html>
